@@ -5,7 +5,11 @@ const mongoDB = require("./dbs/db")
 const express = require("express")
 const PORT = 8000;
 const app = express();
-
+app.use(express.json());
+app.use("/api" , require("./Routes/CreatUser"))
+app.get('/' , (req , res)=>{
+    res.send("Hello Thunder -------")
+})
 mongoDB();
 // console.log(conn);
 app.listen(PORT , () => {
