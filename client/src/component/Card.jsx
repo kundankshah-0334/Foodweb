@@ -4,7 +4,7 @@ function Card() {
     return (
         <div>
             <div className="card mt-4 ms-4" style={{ "width": "18rem", "maxHeight": "360px" }}>
-                <img src="..." className="card-img-top" alt="..." />
+                <img src="https://source.unsplash.com/random/900×700/?Pizza" className="card-img-top" alt="..." />
                 <div className="card-body">
                     <h5 className="card-title">Card title</h5>
                     <p className="card-text">Some quick example of the card's content.</p>
@@ -22,7 +22,7 @@ function Card() {
                             <option value="half">Half</option>
                             <option value="full">Full</option>
                         </select>
-                        <div className='d-inline m-2 h-100 '><button className='text-white h-100 btn-success rounded'>Total Price</button></div>
+                        <div className='d-inline'><button className='text-white h-100 btn-secondary rounded'>Total Price</button></div>
                     </div>
                 </div>
             </div>

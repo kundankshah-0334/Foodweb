@@ -8,8 +8,22 @@ function Home() {
     <div>
       <Navbar />
       <Carousal />
-      <Card />
+      <div className='row mt-3'>
+        <div className='col-4'>
+        <Card />
+        </div>
+        <div className='col-4'>
+        <Card />
+        </div>
+        <div className='col-4'>
+        <Card />
+        </div>
+
+      </div>
+      <div className='mt-5'>
       <Footer />
+
+      </div>
     </div>
   )
 }
