@@ -3,7 +3,7 @@ import React from 'react'
 function Card() {
     return (
         <div>
-            <div className="card mt-4 ms-4" style={{ "width": "18rem", "maxHeight": "360px" }}>
+            <div id='card' className="card mt-4 ms-4" style={{ "width": "18rem", "maxHeight": "360px" }}>
                 <img src="https://source.unsplash.com/random/900×700/?Pizza" className="card-img-top" alt="..." />
                 <div className="card-body">
                     <h5 className="card-title">Card title</h5>

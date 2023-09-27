@@ -4,5 +4,9 @@ body {
  
 
 #carousal{
-  max-height: 500px;
+  max-height: 350px;
+}
+#card{
+  max-height: 100px;
+
 }

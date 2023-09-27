@@ -3,33 +3,33 @@ const express = require("express");
 const router = express.Router();
 
 const User = require("../models/User");
-const { query, validationResult } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 
 router.post('/createuser' ,
-    [
-        query('name').isLength({min : 3}),
-        query('email').isEmail(),
-        query('password').isLength({min : 5}),
-        query('location').isLength({min : 10}),
-    ]
-    , async (req , res) => {
-     try {
+    
+[body('name').isLength({min : 3}),
+        body('email').isEmail(),
+        body('password').isLength({min : 5}),
+        body('geolocation').isLength({min : 10})] ,
+
+    async (req , res) => {
+
         const errors = validationResult(req);
         if(!errors.isEmpty()){
             return res.status(400).json({errors : errors.array() });
         }
+     try {
 
         await User.create({
             name : req.body.name,
-            location : req.body.location,
+            location : req.body.geolocation,
             email:req.body.email,
             password:req.body.password,
-        })
-        res.json({success : true});
+        }).then(res.json({success : true})) ;
     } catch (error) {
-         res.json({success : false});
-        
-     }
+            console.log(error); // Log the error for debugging
+            res.json({ success: false }); // Return the error message in the response
+        }
 })
 
-module.exports = router ;
+module.exports = router;
