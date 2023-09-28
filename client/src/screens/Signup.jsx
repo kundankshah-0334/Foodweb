@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom"
+import { Link , useNavigate } from "react-router-dom"
 
 
 
 
 function Signup() {
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
@@ -27,6 +28,10 @@ function Signup() {
 
     if (!json.success) {
       alert("Enter Valid Credentials")
+    }
+    if(json.success){
+      alert("Register Successful");
+      navigate("/login")
     }
 
   }

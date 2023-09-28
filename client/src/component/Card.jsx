@@ -1,14 +1,17 @@
-import React from 'react'
+import React from 'react';
 
-function Card() {
+function Card(p) {
+    let options = p.options;
+    let pOptions = Object.keys(options);
+
     return (
-        <div>
-            <div id='card' className="card mt-4 ms-4" style={{ "width": "18rem", "maxHeight": "360px" }}>
-                <img src="https://source.unsplash.com/random/900×700/?Pizza" className="card-img-top" alt="..." />
+        <div className='' id='cont-card'>
+            <div className="card   mt-4 ms-0" id='card-main' style={{ "width": "17rem", "maxHeight": "360px" }}>  {/* //, "maxHeight": "360px" */}
+                <img id='card-img-z' src={p.imgSrc} style={{filter: "brightness(100%)"}} className="card-img-top" alt="..." />
                 <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
+                    <h5 className="card-title">{p.foodName}</h5>
                     <p className="card-text">Some quick example of the card's content.</p>
-                    <div className='container'>
+                    <div className=''>
                         <select className='m-2 h-100 bg-success rounded'>
                             {
                                 Array.from(Array(6), (e, i) => {
@@ -19,8 +22,13 @@ function Card() {
                             }
                         </select>
                         <select className='m-2 h-100 bg-success rounded'>
-                            <option value="half">Half</option>
-                            <option value="full">Full</option>
+                        {
+                            pOptions.map((data) =>{
+                                return <option value={data} key={data}>{data}</option>
+                            })
+                        }
+                            {/* <option value="half">Half</option>
+                            <option value="full">Full</option> */}
                         </select>
                         <div className='d-inline'><button className='text-white h-100 btn-secondary rounded'>Total Price</button></div>
                     </div>

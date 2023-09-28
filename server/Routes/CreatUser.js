@@ -3,7 +3,6 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const router = express.Router();
 const jwtSecret = "kdfgssdfhsdflbdfghsdfuiruusiuuhsdfuhbnsdf"
-// import bcrypt from "bcryptjs"
 var salt = bcrypt.genSaltSync(10);
 
 const User = require("../models/User");
