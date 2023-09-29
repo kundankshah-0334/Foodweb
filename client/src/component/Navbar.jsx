@@ -1,5 +1,8 @@
 import React from 'react'
+import Badge from 'react-bootstrap/Badge'
 import { Link , useNavigate} from "react-router-dom"
+
+
 function Navbar() {
 
   const navigate = useNavigate();
@@ -41,7 +44,10 @@ function Navbar() {
               </div>
               : 
               <div>
-              <Link className="btn m-2 bg-white text-primary" to="mycart">My Cart</Link>
+              <Link className="btn m-2 bg-white text-primary" to="mycart">
+              My Cart{" "}
+              <Badge pill bg-danger>4</Badge>
+              </Link>
               <p className="btn m-2 bg-white text-danger" onClick={logout} >Logout</p>
               </div>
               
