@@ -4,7 +4,7 @@ import Footer from '../component/Footer'
 import Card from '../component/Card'
 // import Carousal from '../component/Carousal'
 function Home() {
-  const [search , setSearch] = useState([]);
+  const [search , setSearch] = useState('');
   const [foodCat , setFoodCat] = useState([]);
   const [foodData , setFoodData] = useState([]);
   const loadData = async () =>{
@@ -75,8 +75,7 @@ function Home() {
                 .map(filteredData => {
                   return (
                       <div key={filteredData._id} className='col-lg-3  mb-3 mb-sm-0 col-md-4 col-sm-12 '>
-                        <Card foodName={filteredData.name}
-                          imgSrc={filteredData.img}
+                        <Card foodItem = {filteredData}
                           options={filteredData.options[0]}
                         />
                       </div>

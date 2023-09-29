@@ -1,18 +1,49 @@
-import React from 'react';
+import React, { useState ,useEffect, useRef } from 'react';
+import { useCart, useDispatchCart } from './ContextReducer';
 
 function Card(p) {
+
+    const priceRef = useRef();
+
+    let dispatch = useDispatchCart();
+    let data = useCart();
+
     let options = p.options;
     let pOptions = Object.keys(options);
+    const [qty , setQty] = useState(1);
+    const [size , setSize] = useState(pOptions[0]);
 
+    let finalPrice = qty * parseInt(options[size])
+    useEffect(() => {
+        console.log(data)
+        setSize(priceRef.current.value) // Log the updated data whenever it changes
+    }, []);
+    useEffect(() => {
+        console.log(data);
+        // setSize(priceRef.current.value) // Log the updated data whenever it changes
+    }, [data]);
+
+    const handleAddToCart = async () => {
+        await dispatch ({
+            type: "ADD",
+            id : p.foodItem._id,
+            name : p.foodItem.name,
+            price : finalPrice,
+            img : p.foodItem.img,
+            qty : qty,
+            size  : size,
+        })
+        // console.log(data);
+    }
     return (
         <div className='' id='cont-card'>
-            <div className="card   mt-4 ms-0" id='card-main' style={{ "width": "17rem", "maxHeight": "360px" }}>  {/* //, "maxHeight": "360px" */}
-                <img id='card-img-z' src={p.imgSrc} style={{filter: "brightness(100%)"}} className="card-img-top" alt="..." />
+            <div className="card   mt-4 ms-0" id='card-main' style={{ "width": "17rem", "maxHeight": "450px" }}>  {/* //, "maxHeight": "360px" */}
+                <img id='card-img-z' src={p.foodItem.img} style={{ filter: "brightness(100%)", "height": "200px" }} className="card-img-top" alt="..." />
                 <div className="card-body">
-                    <h5 className="card-title">{p.foodName}</h5>
-                    <p className="card-text">Some quick example of the card's content.</p>
-                    <div className=''>
-                        <select className='m-2 h-100 bg-success rounded'>
+                    <h5 className="card-title">{p.foodItem.name}</h5>
+                    {/* <p className="card-text">Some quick example of the card's content.</p> */}
+                    <div className=''> 
+                        <select className='m-2 h-100 bg-success rounded' onChange={(e) => setQty(e.target.value)}>
                             {
                                 Array.from(Array(6), (e, i) => {
                                     return (
@@ -21,16 +52,20 @@ function Card(p) {
                                 })
                             }
                         </select>
-                        <select className='m-2 h-100 bg-success rounded'>
-                        {
-                            pOptions.map((data) =>{
-                                return <option value={data} key={data}>{data}</option>
-                            })
-                        }
-                            {/* <option value="half">Half</option>
-                            <option value="full">Full</option> */}
+                        <select className='m-2 h-100 bg-success rounded' ref={priceRef} onChange={(e) => setSize(e.target.value)}>
+                            {
+                                pOptions.map((data) => {
+                                    return <option value={data} key={data}>{data}</option>
+                                })
+                            }
                         </select>
-                        <div className='d-inline'><button className='text-white h-100 btn-secondary rounded'>Total Price</button></div>
+                        <div className='d-inline'>
+                        <button className='text-white h-100 btn-secondary rounded'>₹{finalPrice}/-</button>
+                        </div>
+                        <hr />
+                        <div className='container'>
+                        <p className="btn m-2 bg-success text-white" onClick={handleAddToCart} >Add to cart</p>
+                        </div>
                     </div>
                 </div>
             </div>
