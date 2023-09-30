@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../component/Navbar'
 import Footer from '../component/Footer'
 import Card from '../component/Card'
-// import Carousal from '../component/Carousal'
+
 function Home() {
   const [search , setSearch] = useState('');
   const [foodCat , setFoodCat] = useState([]);
@@ -18,11 +18,7 @@ function Home() {
 
    setFoodCat(responce[1]);
    setFoodData(responce[0]);
-
-  //  console.log(foodCat);
-  //  console.log(foodData);
    console.log(search);
-    // console.log(responce[0] , responce[1]);
 
   }
   useEffect(() => {
@@ -37,7 +33,6 @@ function Home() {
                 <div className="carousel-caption d-none d-md-block" style={{zIndex:"3"}}>
                 <div className="d-flex justify-content-center" >
                     <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" name='srerch' value={search} onChange={(e) => {setSearch(e.target.value)}} />
-                    {/* <button className="btn btn-success" type="submit">Search</button> */}
                 </div>
                 </div>
                     <div className="carousel-item active">
@@ -79,7 +74,6 @@ function Home() {
                           options={filteredData.options[0]}
                         />
                       </div>
-
                   )
                 })
                 : 
@@ -92,7 +86,6 @@ function Home() {
       </div>
       <div className='mt-5'>
       <Footer />
-
       </div>
     </div>
   )
