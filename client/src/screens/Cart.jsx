@@ -5,7 +5,7 @@ function Cart() {
 
     const data = useCart();
     const dispatch = useDispatchCart();
-     if(data.lenght ===  0){
+     if(data.length ===  0){
         return (
             <div className='m-5 w-100 text-center fs-3'>Cart is Empty</div>
         )
@@ -13,10 +13,10 @@ function Cart() {
      let totalPrice = data.reduce((total , food) => total+food.price , 0)
     return (
         <>
-        <div className='container mt-5 p-4'>
-                  <table class="table text-success fs-5">
+        <div className='container mt-1 p-4'>
+                  <table className="table">
                 <thead>
-                    <tr>
+                    <tr className='text-success'>
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Quantity</th>
@@ -37,18 +37,15 @@ function Cart() {
                                 <td>{food.qty}</td>
                                 <td>{food.size}</td>
                                 <td>{food.price}</td>
-                                <td><button type='button' className='btn btn-danger'>Delete</button></td>
+                                <td><button type='button' className='btn btn-danger p-0' onClick={() => {dispatch({type : "REMOVE" , index: index})}}>Delete</button></td>
                                 </tr>
                                 </>
                             )
                         })
                     }
-             
-                 
-                
-                     
                 </tbody>
             </table>
+                <div className='fs-3 mt-1'> Total Price = ₹ {totalPrice} /-</div>
             </div>
   
         </>

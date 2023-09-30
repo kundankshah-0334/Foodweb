@@ -3,6 +3,7 @@ import { useCart, useDispatchCart } from './ContextReducer';
 
 function Card(p) {
 
+  
     const priceRef = useRef();
 
     let dispatch = useDispatchCart();
@@ -15,15 +16,56 @@ function Card(p) {
 
     let finalPrice = qty * parseInt(options[size])
     useEffect(() => {
-        console.log(data)
-        setSize(priceRef.current.value) // Log the updated data whenever it changes
+        // console.log(data)
+        setSize(priceRef.current.value) // Log the updafoodItemlet foodItem = props.item;ted data whenever it changes
     }, []);
     useEffect(() => {
-        console.log(data);
+        // console.log(data);
         // setSize(priceRef.current.value) // Log the updated data whenever it changes
     }, [data]);
 
     const handleAddToCart = async () => {
+
+        let food = [];
+        for(const item of data){
+            if(item.id === p.foodItem._id){
+                food = [];
+                food = item;
+                console.log(item)
+                // console.log(p.foodItem._id);
+                // console.log(item.id);
+
+                break;
+            }
+        }
+
+
+        if(food.length !== 0) {
+            console.log(food)
+            if(food.size === size){
+                console.log(qty);
+                console.log(food.size);
+                console.log(p.foodItem._id);
+                await dispatch({type:"UPDATE" , id:p.foodItem._id , price:finalPrice ,qty : qty})
+                console.log("Food is not empty");
+                return
+            } 
+            else if(food.size !== size){
+                await dispatch ({
+                    type: "ADD",
+                    id : p.foodItem._id,
+                    name : p.foodItem.name,
+                    price : finalPrice,
+                    img : p.foodItem.img,
+                    qty : qty,
+                    size  : size,
+                })
+                return
+            }
+            return
+        }
+        // }
+
         await dispatch ({
             type: "ADD",
             id : p.foodItem._id,
@@ -74,3 +116,5 @@ function Card(p) {
 }
 
 export default Card
+
+
