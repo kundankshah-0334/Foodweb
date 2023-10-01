@@ -1,5 +1,6 @@
 import React from 'react'
 import { useCart , useDispatchCart } from '../component/ContextReducer'
+import {Link} from "react-router-dom"
 
 function Cart() {
 
@@ -10,7 +11,39 @@ function Cart() {
             <div className='m-5 w-100 text-center fs-3'>Cart is Empty</div>
         )
      }
-     let totalPrice = data.reduce((total , food) => total+food.price , 0)
+     
+     const handleCkeckOut = async () => {
+         let UserEmail = localStorage.getItem('userEmail');
+         console.log(UserEmail);
+         const responce = await fetch("http://localhost:8000/api/orderData", {
+             method: "POST",
+             headers: {
+                 "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: UserEmail,
+                    order_data : data,
+                    order_date : new Date().toDateString()
+                    
+                })
+                
+            });
+
+            console.log('Sending request with data:', {
+                email: UserEmail,
+                order_data: data,
+                order_date: new Date().toDateString(),
+            });
+
+
+            console.log('order Responce ' , responce) ;
+            if(responce.status === 200){
+                dispatch({
+                    type : "DROP"
+                })
+            }
+        }
+        let totalPrice = data.reduce((total , food) => total+food.price , 0);
     return (
         <>
         <div className='container mt-1 p-4'>
@@ -46,6 +79,10 @@ function Cart() {
                 </tbody>
             </table>
                 <div className='fs-3 mt-1'> Total Price = ₹ {totalPrice} /-</div>
+            </div>
+            <div className="">
+            <Link className='btn btn-success ms-4 text-white' onClick={handleCkeckOut}> Check Out</Link>
+
             </div>
   
         </>
