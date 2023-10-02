@@ -44,10 +44,10 @@ export default function MyOrder() {
             <div className='container'>
                 <div className='row'>
                     {orderData !== null ? (
-                        orderData.map((data) => {
+                        orderData.map((data , dataIndex) => {
                             console.log(data);
                             return (
-                                data.reverse().map((arrayData) => {
+                                data.map((arrayData) => {
                                         console.log(arrayData.order_date)
                                         console.log(arrayData.name)
                                         console.log(arrayData.qty)
@@ -55,11 +55,12 @@ export default function MyOrder() {
                                         <div  >
                                                     {arrayData.order_date !== null ? <div className='m-auto mt-5'>
 
-                                                        {arrayData.order_date}
+                                                        {data = arrayData.order_date}
+                                                        {/* {arrayData.order_date} */}
                                                         <hr />
                                                     </div> : ""}
 
-                                                    { arrayData.name !== null ?
+                                                    { arrayData.order_date !== null ?
                                                         <div className='col-12 col-md-6 col-lg-3' >
                                                             <div className="card mt-3" style={{ width: "16rem", maxHeight: "360px" }}>
                                                                 {/* <img src={arrayData.img} className="card-img-top" alt="..." style={{ height: "120px", objectFit: "fill" }} /> */}

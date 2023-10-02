@@ -47,19 +47,18 @@ export default function MyOrder() {
                         orderData.map((data) => {
                             console.log(data);
                             return (
-                                data.reverse().map((arrayData) => {
+                                data.map((arrayData) => {
                                         console.log(arrayData.order_date)
                                         console.log(arrayData.name)
                                         console.log(arrayData.qty)
                                     return (
                                         <div  >
                                                     {arrayData.order_date !== null ? <div className='m-auto mt-5'>
-
-                                                        {arrayData.order_date}
+                                                        {data = arrayData.order_date}
                                                         <hr />
-                                                    </div> : ""}
+                                                    </div> : "date not found"}
 
-                                                    { arrayData.name !== null ?
+                                                    { arrayData.name ?
                                                         <div className='col-12 col-md-6 col-lg-3' >
                                                             <div className="card mt-3" style={{ width: "16rem", maxHeight: "360px" }}>
                                                                 {/* <img src={arrayData.img} className="card-img-top" alt="..." style={{ height: "120px", objectFit: "fill" }} /> */}
@@ -76,7 +75,7 @@ export default function MyOrder() {
                                                                 </div>
                                                             </div>
 
-                                                        </div> : ""
+                                                        </div> : " name not found"
 
 
 
