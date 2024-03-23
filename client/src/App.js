@@ -9,7 +9,7 @@ import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
 import { CartProvider } from './component/ContextReducer';
 import Cart from './screens/Cart';
 import Myorder from './screens/Myorder';
-
+var link_back = "http://localhost:8000/api/"
 function App() {
   return (
     <CartProvider>
